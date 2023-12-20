@@ -18,9 +18,9 @@ fileprivate struct RequiemResultSuccessInstruction: RequiemStorageAndEnvironment
         do {
             let value = try register.pop()
             
-            register.push(.result(.success(value: value)))
+            register.push(.result(value: .success(value: value)))
             
-            return .next
+            return .continue
         } catch {
             return .error(error)
         }
@@ -33,9 +33,9 @@ fileprivate struct RequiemResultErrorInstruction: RequiemStorageAndEnvironmentFr
         do {
             let value = try register.pop()
             
-            register.push(.result(.error(value: value)))
+            register.push(.result(value: .error(value: value)))
             
-            return .next
+            return .continue
         } catch {
             return .error(error)
         }
@@ -58,7 +58,7 @@ fileprivate struct RequiemResultCheckIfSuccessInstruction: RequiemStorageAndEnvi
                 register.push(.boolean(value: false))
             }
             
-            return .next
+            return .continue
         } catch {
             return .error(error)
         }
@@ -81,7 +81,7 @@ fileprivate struct RequiemResultCheckIfErrorInstruction: RequiemStorageAndEnviro
                 register.push(.boolean(value: true))
             }
             
-            return .next
+            return .continue
         } catch {
             return .error(error)
         }
@@ -104,7 +104,7 @@ fileprivate struct RequiemResultSuccessUnwrapInstruction: RequiemStorageAndEnvir
                 return .error(RequiemInvalidOperandError())
             }
             
-            return .next
+            return .continue
         } catch {
             return .error(error)
         }
@@ -127,7 +127,7 @@ fileprivate struct RequiemResultErrorUnwrapInstruction: RequiemStorageAndEnviron
                 register.push(value)
             }
             
-            return .next
+            return .continue
         } catch {
             return .error(error)
         }

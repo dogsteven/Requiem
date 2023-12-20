@@ -16,7 +16,7 @@ fileprivate struct RequiemPopInstruction: RequiemStorageAndEnvironmentFreeInstru
         do {
             try register.pop()
             
-            return .next
+            return .continue
         } catch {
             return .error(error)
         }
@@ -28,7 +28,7 @@ fileprivate struct RequiemDuplicateInstruction: RequiemStorageAndEnvironmentFree
         do {
             try register.duplicate()
             
-            return .next
+            return .continue
         } catch {
             return .error(error)
         }
@@ -40,7 +40,7 @@ fileprivate struct RequiemSwapInstruction: RequiemStorageAndEnvironmentFreeInstr
         do {
             try register.swap()
             
-            return .next
+            return .continue
         } catch {
             return .error(error)
         }
@@ -52,7 +52,7 @@ fileprivate struct RequiemOverInstruction: RequiemStorageAndEnvironmentFreeInstr
         do {
             try register.over()
             
-            return .next
+            return .continue
         } catch {
             return .error(error)
         }
@@ -64,7 +64,7 @@ fileprivate struct RequiemRotateInstruction: RequiemStorageAndEnvironmentFreeIns
         do {
             try register.rotate()
             
-            return .next
+            return .continue
         } catch {
             return .error(error)
         }

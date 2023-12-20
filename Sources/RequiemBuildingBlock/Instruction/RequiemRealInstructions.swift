@@ -39,7 +39,7 @@ fileprivate struct RequiemRealConstantInstruction: RequiemStorageAndEnvironmentF
     func act(register: inout RequiemRegister) -> RequiemInstructionActionResult {
         register.push(.real(value: constant))
         
-        return .next
+        return .continue
     }
 }
 
@@ -54,7 +54,7 @@ fileprivate struct RequiemRealOppositeInstruction: RequiemStorageAndEnvironmentF
 
             register.push(.real(value: -value))
             
-            return .next
+            return .continue
         } catch {
             return .error(error)
         }
@@ -76,7 +76,7 @@ fileprivate struct RequiemRealAddInstruction: RequiemStorageAndEnvironmentFreeIn
 
             register.push(.real(value: lhs + rhs))
             
-            return .next
+            return .continue
         } catch {
             return .error(error)
         }
@@ -98,7 +98,7 @@ fileprivate struct RequiemRealSubtractInstruction: RequiemStorageAndEnvironmentF
 
             register.push(.real(value: lhs - rhs))
             
-            return .next
+            return .continue
         } catch {
             return .error(error)
         }
@@ -120,7 +120,7 @@ fileprivate struct RequiemRealMultiplyInstruction: RequiemStorageAndEnvironmentF
 
             register.push(.real(value: lhs * rhs))
             
-            return .next
+            return .continue
         } catch {
             return .error(error)
         }
@@ -143,7 +143,7 @@ fileprivate struct RequiemRealDivideInstruction: RequiemStorageAndEnvironmentFre
 
             register.push(.real(value: lhs / rhs))
             
-            return .next
+            return .continue
         } catch {
             return .error(error)
         }
@@ -166,7 +166,7 @@ fileprivate struct RequiemRealEqualInstruction: RequiemStorageAndEnvironmentFree
 
             register.push(.boolean(value: lhs == rhs))
             
-            return .next
+            return .continue
         } catch {
             return .error(error)
         }
@@ -189,7 +189,7 @@ fileprivate struct RequiemRealNotEqualInstruction: RequiemStorageAndEnvironmentF
 
             register.push(.boolean(value: lhs != rhs))
             
-            return .next
+            return .continue
         } catch {
             return .error(error)
         }
@@ -212,7 +212,7 @@ fileprivate struct RequiemRealLessInstruction: RequiemStorageAndEnvironmentFreeI
 
             register.push(.boolean(value: lhs < rhs))
             
-            return .next
+            return .continue
         } catch {
             return .error(error)
         }
@@ -235,7 +235,7 @@ fileprivate struct RequiemRealLessEqualInstruction: RequiemStorageAndEnvironment
 
             register.push(.boolean(value: lhs <= rhs))
             
-            return .next
+            return .continue
         } catch {
             return .error(error)
         }
@@ -258,7 +258,7 @@ fileprivate struct RequiemRealGreaterInstruction: RequiemStorageAndEnvironmentFr
 
             register.push(.boolean(value: lhs > rhs))
             
-            return .next
+            return .continue
         } catch {
             return .error(error)
         }
@@ -281,7 +281,7 @@ fileprivate struct RequiemRealGreaterEqualInstruction: RequiemStorageAndEnvironm
 
             register.push(.boolean(value: lhs >= rhs))
             
-            return .next
+            return .continue
         } catch {
             return .error(error)
         }
@@ -299,7 +299,7 @@ fileprivate struct RequiemRealRoundInstruction: RequiemStorageAndEnvironmentFree
             
             register.push(.real(value: value.rounded()))
 
-            return .next
+            return .continue
         } catch {
             return .error(error)
         }
@@ -317,7 +317,7 @@ fileprivate struct RequiemRealRoundUpInstruction: RequiemStorageAndEnvironmentFr
             
             register.push(.real(value: value.rounded(.down)))
 
-            return .next
+            return .continue
         } catch {
             return .error(error)
         }
@@ -335,7 +335,7 @@ fileprivate struct RequiemRealRoundDownInstruction: RequiemStorageAndEnvironment
             
             register.push(.real(value: value.rounded(.up)))
 
-            return .next
+            return .continue
         } catch {
             return .error(error)
         }
@@ -353,7 +353,7 @@ fileprivate struct RequiemRealToIntegerInstruction: RequiemStorageAndEnvironment
             
             register.push(.integer(value: Int(value)))
 
-            return .next
+            return .continue
         } catch {
             return .error(error)
         }

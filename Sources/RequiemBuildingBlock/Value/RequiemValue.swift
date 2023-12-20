@@ -5,6 +5,7 @@ public enum RequiemValue {
     case integer(value: Int)
     case real(value: Double)
     case string(value: String)
+    case object(value: RequiemObject)
     case result(value: RequiemResultValue)
 }
 

@@ -19,7 +19,7 @@ fileprivate struct RequiemStringConstantInstruction: RequiemStorageAndEnvironmen
     func act(register: inout RequiemRegister) -> RequiemInstructionActionResult {
         register.push(.string(value: constant))
         
-        return .next
+        return .continue
     }
 }
 
@@ -34,7 +34,7 @@ fileprivate struct RequiemStringLengthInstruction: RequiemStorageAndEnvironmentF
             
             register.push(.integer(value: string.count))
             
-            return .next
+            return .continue
         } catch {
             return .error(error)
         }
@@ -58,7 +58,7 @@ fileprivate struct RequiemStringSubscriptInstruction: RequiemStorageAndEnvironme
             
             register.push(.string(value: String(string[index])))
             
-            return .next
+            return .continue
         } catch {
             return .error(error)
         }
@@ -85,7 +85,7 @@ fileprivate struct RequiemStringSubstringInstruction: RequiemStorageAndEnvironme
             
             register.push(.string(value: String(string[leftIndex..<rightIndex])))
             
-            return .next
+            return .continue
         } catch {
             return .error(error)
         }
@@ -107,7 +107,7 @@ fileprivate struct RequiemStringConcatenateInstruction: RequiemStorageAndEnviron
             
             register.push(.string(value: lhs + rhs))
             
-            return .next
+            return .continue
         } catch {
             return .error(error)
         }
@@ -129,7 +129,7 @@ fileprivate struct RequiemStringEqualInstruction: RequiemStorageAndEnvironmentFr
             
             register.push(.boolean(value: lhs == rhs))
             
-            return .next
+            return .continue
         } catch {
             return .error(error)
         }

@@ -6,8 +6,9 @@ public protocol RequiemInstruction {
 public enum RequiemInstructionActionResult {
     case `continue`
     case jump(offset: Int)
-    case `return`
     case yieldSubroutine(RequiemSubroutine)
+    case `return`
+    case halt
     case error(Error)
 }
 

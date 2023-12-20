@@ -15,7 +15,7 @@ fileprivate struct RequiemTrueInstruction: RequiemStorageAndEnvironmentFreeInstr
     func act(register: inout RequiemRegister) -> RequiemInstructionActionResult {
         register.push(.boolean(value: true))
         
-        return .next
+        return .continue
     }
 }
 
@@ -23,7 +23,7 @@ fileprivate struct RequiemFalseInstruction: RequiemStorageAndEnvironmentFreeInst
     func act(register: inout RequiemRegister) -> RequiemInstructionActionResult {
         register.push(.boolean(value: false))
         
-        return .next
+        return .continue
     }
 }
 
@@ -38,7 +38,7 @@ fileprivate struct RequiemNotInstruction: RequiemStorageAndEnvironmentFreeInstru
             
             register.push(.boolean(value: !value))
 
-            return .next
+            return .continue
         } catch {
             return .error(error)
         }
@@ -60,7 +60,7 @@ fileprivate struct RequiemOrInstruction: RequiemStorageAndEnvironmentFreeInstruc
             
             register.push(.boolean(value: lhs || rhs))
 
-            return .next
+            return .continue
         } catch {
             return .error(error)
         }
@@ -82,7 +82,7 @@ fileprivate struct RequiemAndInstruction: RequiemStorageAndEnvironmentFreeInstru
             
             register.push(.boolean(value: lhs && rhs))
 
-            return .next
+            return .continue
         } catch {
             return .error(error)
         }

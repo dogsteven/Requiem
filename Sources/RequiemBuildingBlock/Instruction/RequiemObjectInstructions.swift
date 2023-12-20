@@ -22,7 +22,7 @@ fileprivate struct RequiemUnownedReferInstruction: RequiemStorageAndEnvironmentF
                 register.push(.object(value: RequiemUnownedObject(object: object)))
             }
             
-            return .next
+            return .continue
         } catch {
             return .error(error)
         }
@@ -41,11 +41,11 @@ fileprivate struct RequiemUnownedUnwrapInstruction: RequiemStorageAndEnvironment
                 return .error(RequiemInvalidOperandError())
             }
             
-            let object = try? unownedObject.unwrappedObject()
+            let object = try? unownedObject.unwrapped()
             
             register.push(object.map(RequiemValue.object(value:)) ?? .null)
             
-            return .next
+            return .continue
         } catch {
             return .error(error)
         }
@@ -64,11 +64,11 @@ fileprivate struct RequiemUnownedUnsafeUnwrapInstruction: RequiemStorageAndEnvir
                 return .error(RequiemInvalidOperandError())
             }
             
-            let object = try unownedObject.unwrappedObject()
+            let object = try unownedObject.unwrapped()
             
             register.push(.object(value: object))
             
-            return .next
+            return .continue
         } catch {
             return .error(error)
         }

@@ -9,7 +9,7 @@ fileprivate struct RequiemNullInstruction: RequiemStorageAndEnvironmentFreeInstr
     func act(register: inout RequiemRegister) -> RequiemInstructionActionResult {
         register.push(.null)
         
-        return .next
+        return .continue
     }
 }
 
@@ -25,7 +25,7 @@ fileprivate struct RequiemCheckIfNullInstruction: RequiemStorageAndEnvironmentFr
                 register.push(.boolean(value: false))
             }
             
-            return .next
+            return .continue
         } catch {
             return .error(error)
         }

@@ -55,7 +55,7 @@ fileprivate struct RequiemIntegerConstantInstruction: RequiemStorageAndEnvironme
     func act(register: inout RequiemRegister) -> RequiemInstructionActionResult {
         register.push(.integer(value: constant))
         
-        return .next
+        return .continue
     }
 }
 
@@ -74,7 +74,7 @@ fileprivate struct RequiemIntegerOppositeInstruction: RequiemStorageAndEnvironme
             register.push(.integer(value: result))
             register.push(.boolean(value: isOverflow))
 
-            return .next
+            return .continue
         } catch {
             return .error(error)
         }
@@ -98,7 +98,7 @@ fileprivate struct RequiemIntegerAddInstruction: RequiemStorageAndEnvironmentFre
             register.push(.integer(value: result))
             register.push(.boolean(value: isOverflow))
 
-            return .next
+            return .continue
         } catch {
             return .error(error)
         }
@@ -122,7 +122,7 @@ fileprivate struct RequiemIntegerSubtractInstruction: RequiemStorageAndEnvironme
             register.push(.integer(value: result))
             register.push(.boolean(value: isOverflow))
 
-            return .next
+            return .continue
         } catch {
             return .error(error)
         }
@@ -146,7 +146,7 @@ fileprivate struct RequiemIntegerMultiplyInstruction: RequiemStorageAndEnvironme
             register.push(.integer(value: result))
             register.push(.boolean(value: isOverflow))
 
-            return .next
+            return .continue
         } catch {
             return .error(error)
         }
@@ -170,7 +170,7 @@ fileprivate struct RequiemIntegerDivideInstruction: RequiemStorageAndEnvironment
             register.push(.integer(value: result))
             register.push(.boolean(value: isOverflow))
 
-            return .next
+            return .continue
         } catch {
             return .error(error)
         }
@@ -194,7 +194,7 @@ fileprivate struct RequiemIntegerModuloInstruction: RequiemStorageAndEnvironment
             register.push(.integer(value: result))
             register.push(.boolean(value: isOverflow))
 
-            return .next
+            return .continue
         } catch {
             return .error(error)
         }
@@ -222,7 +222,7 @@ fileprivate struct RequiemIntegerBitShiftInstruction: RequiemStorageAndEnvironme
                 register.push(.integer(value: lhs >> (-shift)))
             }
             
-            return .next
+            return .continue
         } catch {
             return .error(error)
         }
@@ -244,7 +244,7 @@ fileprivate struct RequiemIntegerBitOrInstruction: RequiemStorageAndEnvironmentF
             
             register.push(.integer(value: lhs | rhs))
             
-            return .next
+            return .continue
         } catch {
             return .error(error)
         }
@@ -266,7 +266,7 @@ fileprivate struct RequiemIntegerBitAndInstruction: RequiemStorageAndEnvironment
             
             register.push(.integer(value: lhs & rhs))
             
-            return .next
+            return .continue
         } catch {
             return .error(error)
         }
@@ -288,7 +288,7 @@ fileprivate struct RequiemIntegerBitXorInstruction: RequiemStorageAndEnvironment
             
             register.push(.integer(value: lhs ^ rhs))
             
-            return .next
+            return .continue
         } catch {
             return .error(error)
         }
@@ -308,7 +308,7 @@ fileprivate struct RequiemIntegerUnsafeOppositeInstruction: RequiemStorageAndEnv
 
             register.push(.integer(value: -value))
 
-            return .next
+            return .continue
         } catch {
             return .error(error)
         }
@@ -330,7 +330,7 @@ fileprivate struct RequiemIntegerUnsafeAddInstruction: RequiemStorageAndEnvironm
             
             register.push(.integer(value: lhs + rhs))
 
-            return .next
+            return .continue
         } catch {
             return .error(error)
         }
@@ -352,7 +352,7 @@ fileprivate struct RequiemIntegerUnsafeSubtractInstruction: RequiemStorageAndEnv
             
             register.push(.integer(value: lhs - rhs))
 
-            return .next
+            return .continue
         } catch {
             return .error(error)
         }
@@ -374,7 +374,7 @@ fileprivate struct RequiemIntegerUnsafeMultiplyInstruction: RequiemStorageAndEnv
             
             register.push(.integer(value: lhs * rhs))
 
-            return .next
+            return .continue
         } catch {
             return .error(error)
         }
@@ -397,7 +397,7 @@ fileprivate struct RequiemIntegerUnsafeDivideInstruction: RequiemStorageAndEnvir
             
             register.push(.integer(value: lhs / rhs))
 
-            return .next
+            return .continue
         } catch {
             return .error(error)
         }
@@ -420,7 +420,7 @@ fileprivate struct RequiemIntegerUnsafeModuloInstruction: RequiemStorageAndEnvir
             
             register.push(.integer(value: lhs % rhs))
 
-            return .next
+            return .continue
         } catch {
             return .error(error)
         }
@@ -442,7 +442,7 @@ fileprivate struct RequiemIntegerEqualInstruction: RequiemStorageAndEnvironmentF
             
             register.push(.boolean(value: lhs == rhs))
 
-            return .next
+            return .continue
         } catch {
             return .error(error)
         }
@@ -464,7 +464,7 @@ fileprivate struct RequiemIntegerNotEqualInstruction: RequiemStorageAndEnvironme
             
             register.push(.boolean(value: lhs != rhs))
 
-            return .next
+            return .continue
         } catch {
             return .error(error)
         }
@@ -486,7 +486,7 @@ fileprivate struct RequiemIntegerLessInstruction: RequiemStorageAndEnvironmentFr
             
             register.push(.boolean(value: lhs < rhs))
 
-            return .next
+            return .continue
         } catch {
             return .error(error)
         }
@@ -508,7 +508,7 @@ fileprivate struct RequiemIntegerLessEqualInstruction: RequiemStorageAndEnvironm
             
             register.push(.boolean(value: lhs <= rhs))
 
-            return .next
+            return .continue
         } catch {
             return .error(error)
         }
@@ -530,7 +530,7 @@ fileprivate struct RequiemIntegerGreaterInstruction: RequiemStorageAndEnvironmen
             
             register.push(.boolean(value: lhs > rhs))
 
-            return .next
+            return .continue
         } catch {
             return .error(error)
         }
@@ -552,7 +552,7 @@ fileprivate struct RequiemIntegerGreaterEqualInstruction: RequiemStorageAndEnvir
             
             register.push(.boolean(value: lhs >= rhs))
 
-            return .next
+            return .continue
         } catch {
             return .error(error)
         }
@@ -570,7 +570,7 @@ fileprivate struct RequiemIntegerToRealInstruction: RequiemStorageAndEnvironment
 
             register.push(.real(value: Double(value)))
             
-            return .next
+            return .continue
         } catch {
             return .error(error)
         }

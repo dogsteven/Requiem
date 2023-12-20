@@ -12,7 +12,7 @@ fileprivate struct RequiemSubroutineConstantInstruction: RequiemStorageFreeInstr
             
             register.push(.object(value: subroutine))
             
-            return .next
+            return .continue
         } catch {
             return .error(error)
         }

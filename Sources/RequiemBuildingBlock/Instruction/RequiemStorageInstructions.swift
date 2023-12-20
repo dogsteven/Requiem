@@ -13,7 +13,7 @@ fileprivate struct RequiemReadStorageInstruction: RequiemEnvironmentFreeInstruct
             let value = try storage.readStorage(index: index)
             register.push(value)
             
-            return .next
+            return .continue
         } catch {
             return .error(error)
         }
@@ -28,7 +28,7 @@ fileprivate struct RequiemWriteStorageInstruction: RequiemEnvironmentFreeInstruc
             let value = try register.pop()
             try storage.writeStorage(index: index, value: value)
             
-            return .next
+            return .continue
         } catch {
             return .error(error)
         }

@@ -4,11 +4,11 @@ extension RequiemInstruction {
     
     public static var call: RequiemInstruction { RequiemCallInstruction() }
     
-    public static func jump(offset: Int16) -> RequiemInstruction { RequiemJumpInstruction(offset: offset) }
+    public static func jump(offset: Int) -> RequiemInstruction { RequiemJumpInstruction(offset: offset) }
     
-    public static func jumpIf(offset: Int16) -> RequiemInstruction { RequiemJumpIfInstruction(offset: offset) }
+    public static func jumpIf(offset: Int) -> RequiemInstruction { RequiemJumpIfInstruction(offset: offset) }
     
-    public static func jumpIfNot(offset: Int16) -> RequiemInstruction { RequiemJumpIfNotInstruction(offset: offset) }
+    public static func jumpIfNot(offset: Int) -> RequiemInstruction { RequiemJumpIfNotInstruction(offset: offset) }
 }
 
 fileprivate struct RequiemReturnInstruction: RequiemStorageAndEnvironmentFreeInstruction {
@@ -37,7 +37,7 @@ fileprivate struct RequiemCallInstruction: RequiemStorageAndEnvironmentFreeInstr
 }
 
 fileprivate struct RequiemJumpInstruction: RequiemStorageAndEnvironmentFreeInstruction {
-    public let offset: Int16
+    public let offset: Int
     
     func act(register: inout RequiemRegister) -> RequiemInstructionActionResult {
         return .jump(offset: offset)
@@ -45,7 +45,7 @@ fileprivate struct RequiemJumpInstruction: RequiemStorageAndEnvironmentFreeInstr
 }
 
 fileprivate struct RequiemJumpIfInstruction: RequiemStorageAndEnvironmentFreeInstruction {
-    public let offset: Int16
+    public let offset: Int
     
     func act(register: inout RequiemRegister) -> RequiemInstructionActionResult {
         do {
@@ -58,7 +58,7 @@ fileprivate struct RequiemJumpIfInstruction: RequiemStorageAndEnvironmentFreeIns
             if condition {
                 return .jump(offset: offset)
             } else {
-                return .next
+                return .continue
             }
         } catch {
             return .error(error)
@@ -67,7 +67,7 @@ fileprivate struct RequiemJumpIfInstruction: RequiemStorageAndEnvironmentFreeIns
 }
 
 fileprivate struct RequiemJumpIfNotInstruction: RequiemStorageAndEnvironmentFreeInstruction {
-    public let offset: Int16
+    public let offset: Int
     
     func act(register: inout RequiemRegister) -> RequiemInstructionActionResult {
         do {
@@ -80,7 +80,7 @@ fileprivate struct RequiemJumpIfNotInstruction: RequiemStorageAndEnvironmentFree
             if !condition {
                 return .jump(offset: offset)
             } else {
-                return .next
+                return .continue
             }
         } catch {
             return .error(error)
